@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Lotus Records móvil — propuesta</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Bebas Neue Pro';font-style:normal;font-weight:700;font-display:swap;src:url(./assets/b4f6e4d1ac5feb287ba064b5f8f72537.woff) format('woff')}
+body{margin:0}
+a{color:#D79212}a:hover{color:#f0a823}
+.rail{scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.rail::-webkit-scrollbar{display:none}
+.rail > *{scroll-snap-align:start}
+</style>
+</helmet>
+<div style="width: 390px; height: 2400px; display: flex; flex-direction: column; overflow: hidden; background: #0d0d0d; font-family: Inter, system-ui, sans-serif; color: #d9d9d9">
+
+<!-- 1) ARTISTAS -->
+<section id="artistas" style="background: #0d0d0d; padding: 56px 0 48px; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; align-items: center; gap: 20px; padding: 0 20px">
+<h2 style="margin: 0; font-family: 'Bebas Neue Pro', Impact, sans-serif; font-weight: 700; font-size: 50px; line-height: 1; color: #d9d9d9; text-transform: uppercase">Artistas</h2>
+<div aria-hidden="true" style="flex: 1; display: flex; flex-direction: column; gap: 6px; padding-top: 4px">
+<span style="display: block; height: 1px; width: 100%; background: #6a6a6a"></span>
+<span style="display: block; height: 1px; width: 82%; background: #6a6a6a"></span>
+<span style="display: block; height: 1px; width: 55%; background: #6a6a6a"></span>
+</div>
+</div>
+<div class="rail" onScroll="{{ onArt }}" style="display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 20px; padding: 0 20px">
+<sc-for list="{{ artists }}" as="a" hint-placeholder-count="3">
+<article style="flex: 0 0 {{ cardW }}px; display: flex; flex-direction: column">
+<div style="position: relative; height: {{ artH }}px; border-radius: 20px; overflow: hidden; background: #222">
+<img src="{{ a.img }}" alt="{{ a.name }}" style="display: block; width: 100%; height: 100%; object-fit: cover">
+<div style="position: absolute; left: 14px; right: 14px; bottom: 14px; display: flex; justify-content: space-around; align-items: center; padding: 4px 6px; border-radius: 999px; background: rgba(240,240,240,0.9)">
+<a href="#" aria-label="Spotify" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#1e1e1e"></circle><path d="M6.5 9.2c3.8-1.1 7.7-.8 11 1M7.2 12.4c3.1-.8 6.2-.5 8.9.9M7.9 15.4c2.4-.6 4.7-.4 6.8.7" stroke="#f0f0f0" stroke-width="1.6" fill="none" stroke-linecap="round"></path></svg></a>
+<a href="#" aria-label="Instagram" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="6" fill="#1e1e1e"></rect><circle cx="12" cy="12" r="4.2" fill="none" stroke="#f0f0f0" stroke-width="1.8"></circle><circle cx="17.3" cy="6.7" r="1.2" fill="#f0f0f0"></circle></svg></a>
+<a href="#" aria-label="TikTok" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 2.5h2.8c.2 2 1.7 3.6 3.6 3.8v2.9c-1.4 0-2.7-.4-3.8-1.1v6.6a5.7 5.7 0 1 1-5.7-5.7c.3 0 .6 0 .9.1v3a2.8 2.8 0 1 0 2.2 2.7V2.5z" fill="#1e1e1e"></path></svg></a>
+<a href="#" aria-label="YouTube" style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px"><svg width="24" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="1.5" y="5" width="21" height="14" rx="4" fill="#1e1e1e"></rect><path d="M10 8.8l5.2 3.2-5.2 3.2z" fill="#f0f0f0"></path></svg></a>
+</div>
+</div>
+<h3 style="margin: 22px 0 0; font-size: 18px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: #d9d9d9; line-height: 1.3">{{ a.name }}</h3>
+<p style="margin: 10px 0 0; font-size: 16px; font-weight: 300; color: #bdbdbd">{{ a.tag }}</p>
+<a href="#" style="margin-top: 18px; align-self: flex-start; display: inline-flex; align-items: center; gap: 22px; min-height: 46px; box-sizing: border-box; padding: 5px 6px 5px 26px; border: 1px solid #d9d9d9; border-radius: 999px; background: #1e1e1e; color: #ffffff; text-decoration: none; font-size: 16px">Ver más<span style="width: 34px; height: 34px; border-radius: 50%; background: #D79212; display: flex; align-items: center; justify-content: center"><svg width="11" height="13" viewBox="0 0 11 13" aria-hidden="true"><path d="M1.5 1l8 5.5-8 5.5z" fill="#1e1e1e"></path></svg></span></a>
+</article>
+</sc-for>
+<div aria-hidden="true" style="flex: 0 0 6px; scroll-snap-align: none"></div>
+</div>
+<div style="display: flex; align-items: center; gap: 6px; padding: 0 20px">
+<sc-for list="{{ artDots }}" as="d" hint-placeholder-count="6"><span style="{{ d.style }}"></span></sc-for>
+<span style="margin-left: auto; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #9a9a9a">Desliza<svg width="18" height="10" viewBox="0 0 18 10" aria-hidden="true"><path d="M1 5h15M12 1l4 4-4 4" stroke="#9a9a9a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+</div>
+</section>
+
+<!-- 3) LO QUE HACEMOS -->
+<section id="servicios" style="background: #ffffff; padding: 56px 0 48px; display: flex; flex-direction: column; gap: 28px; color: #1e1e1e">
+<h2 style="margin: 0; padding: 0 20px; text-align: center; font-family: 'Bebas Neue Pro', Impact, sans-serif; font-weight: 700; font-size: 46px; line-height: 1; color: #1e1e1e; text-transform: uppercase">Lo que hacemos</h2>
+<div class="rail" onScroll="{{ onServ }}" style="display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 20px; padding: 0 20px">
+
+<article style="flex: 0 0 {{ cardW }}px; height: 430px; position: relative; overflow: hidden; clip-path: polygon(28px 0, 100% 0, calc(100% - 28px) 100%, 0 100%); background: #111111">
+<img src="./assets/6a64fe3f71c21e1c76d478a48550a764.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+<div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0.72) 100%)"></div>
+<div style="position: relative; height: 100%; box-sizing: border-box; padding: 26px 46px 34px 50px; display: flex; flex-direction: column; color: #ffffff">
+<span style="width: 60px; height: 60px; border-radius: 50%; background: #D79212; display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 28 28" aria-hidden="true"><path d="M8 20L20 8M12 8h8v8M4.5 16.5l4-4M8 23.5l4-4" stroke="#1e1e1e" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+<h3 style="margin: auto 0 16px; font-size: 18px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase">Records</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6">Desarrollamos y lanzamos música con una visión estratégica: producción, distribución, posicionamiento editorial y crecimiento artístico sostenible.</p>
+</div>
+</article>
+
+<article style="flex: 0 0 {{ cardW }}px; height: 430px; position: relative; overflow: hidden; clip-path: polygon(28px 0, 100% 0, calc(100% - 28px) 100%, 0 100%); background: #111111">
+<img src="./assets/3574ba35e1d989ac168e154001e61782.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+<div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0.72) 100%)"></div>
+<div style="position: relative; height: 100%; box-sizing: border-box; padding: 26px 46px 34px 50px; display: flex; flex-direction: column; color: #ffffff">
+<span style="width: 60px; height: 60px; border-radius: 50%; background: #D79212; display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 28 28" aria-hidden="true"><rect x="5" y="7" width="18" height="16" rx="2.5" stroke="#1e1e1e" stroke-width="2.2" fill="none"></rect><path d="M10 4.5v4.5M18 4.5v4.5M12.5 14.5l2-1.5v7" stroke="#1e1e1e" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+<h3 style="margin: auto 0 16px; font-size: 18px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase">Booking</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6">Diseñamos, producimos, vendemos, gestionamos shows y giras, conectando a los artistas con audiencias.</p>
+</div>
+</article>
+
+<article style="flex: 0 0 {{ cardW }}px; height: 430px; position: relative; overflow: hidden; clip-path: polygon(28px 0, 100% 0, calc(100% - 28px) 100%, 0 100%); background: #111111">
+<img src="./assets/3f244d708e5d89c096c4fd019f52bdc6.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+<div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0.72) 100%)"></div>
+<div style="position: relative; height: 100%; box-sizing: border-box; padding: 26px 46px 34px 50px; display: flex; flex-direction: column; color: #ffffff">
+<span style="width: 60px; height: 60px; border-radius: 50%; background: #D79212; display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="7" stroke="#1e1e1e" stroke-width="2.2" fill="none"></circle><path d="M14 3.5v3M14 21.5v3M3.5 14h3M21.5 14h3M6.6 6.6l2.1 2.1M19.3 19.3l2.1 2.1M6.6 21.4l2.1-2.1M19.3 8.7l2.1-2.1M13 17.5v-6l3 -.8" stroke="#1e1e1e" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+<h3 style="margin: auto 0 16px; font-size: 18px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase">Management</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6">Estrategia, desarrollo y gestión para los artistas con visión global.</p>
+</div>
+</article>
+
+<article style="flex: 0 0 {{ cardW }}px; height: 430px; position: relative; overflow: hidden; clip-path: polygon(28px 0, 100% 0, calc(100% - 28px) 100%, 0 100%); background: #111111">
+<img src="./assets/9e0e3e5002bf6fcbcabcf0959ca87aa4.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+<div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0.72) 100%)"></div>
+<div style="position: relative; height: 100%; box-sizing: border-box; padding: 26px 46px 34px 50px; display: flex; flex-direction: column; color: #ffffff">
+<span style="width: 60px; height: 60px; border-radius: 50%; background: #D79212; display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 28 28" aria-hidden="true"><path d="M4.5 11.5h4l11-5.5v16l-11-5.5h-4z" stroke="#1e1e1e" stroke-width="2.2" fill="none" stroke-linejoin="round"></path><path d="M8.5 16.5l2 6h3.5l-2-6" stroke="#1e1e1e" stroke-width="2.2" fill="none" stroke-linejoin="round"></path></svg></span>
+<h3 style="margin: auto 0 16px; font-size: 18px; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase">Brands</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6">Construimos alianzas entre la música y las marcas para generar campañas auténticas y efectivas.</p>
+</div>
+</article>
+
+<div aria-hidden="true" style="flex: 0 0 10px; scroll-snap-align: none"></div>
+</div>
+<div style="display: flex; align-items: center; gap: 6px; padding: 0 20px">
+<sc-for list="{{ servDots }}" as="d" hint-placeholder-count="4"><span style="{{ d.style }}"></span></sc-for>
+<span style="margin-left: auto; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #6b6b6b">Desliza<svg width="18" height="10" viewBox="0 0 18 10" aria-hidden="true"><path d="M1 5h15M12 1l4 4-4 4" stroke="#6b6b6b" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+</div>
+</section>
+
+<!-- 2) SÍGUENOS / INSTAGRAM -->
+<section id="instagram" style="background: #ffffff; padding: 24px 0 52px; display: flex; flex-direction: column; gap: 28px; color: #1e1e1e; border-top: 1px solid #ececec">
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 24px 20px 0">
+<h2 style="margin: 0; font-family: 'Bebas Neue Pro', Impact, sans-serif; font-weight: 700; font-size: 50px; line-height: 1; color: #1e1e1e; text-transform: uppercase">Síguenos</h2>
+<div style="display: flex; gap: 4px">
+<a href="#" aria-label="Spotify" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><span style="width: 34px; height: 34px; border-radius: 50%; background: #E0473F; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 9c4.2-1.3 8.6-.9 12.4 1.1M6.3 12.6c3.4-.9 6.9-.6 9.9 1M7.1 16c2.6-.7 5.3-.5 7.6.8" stroke="#1e1e1e" stroke-width="2.2" fill="none" stroke-linecap="round"></path></svg></span></a>
+<a href="#" aria-label="Instagram" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><span style="width: 34px; height: 34px; border-radius: 50%; background: #2BB3C0; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5" stroke="#1e1e1e" stroke-width="2.2" fill="none"></rect><circle cx="12" cy="12" r="4" stroke="#1e1e1e" stroke-width="2.2" fill="none"></circle><circle cx="17.2" cy="6.8" r="1.2" fill="#1e1e1e"></circle></svg></span></a>
+<a href="#" aria-label="TikTok" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><span style="width: 34px; height: 34px; border-radius: 50%; background: #D79212; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 2.5h2.8c.2 2 1.7 3.6 3.6 3.8v2.9c-1.4 0-2.7-.4-3.8-1.1v6.6a5.7 5.7 0 1 1-5.7-5.7c.3 0 .6 0 .9.1v3a2.8 2.8 0 1 0 2.2 2.7V2.5z" fill="#1e1e1e"></path></svg></span></a>
+</div>
+</div>
+<div class="rail" onScroll="{{ onIg }}" style="display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 20px; padding: 0 20px">
+<a href="#" aria-label="Post de Instagram: Anttonias, nuevo disco" style="flex: 0 0 {{ cardW }}px; height: {{ igH }}px; display: block; overflow: hidden; background: #eeeeee"><img src="./assets/bfd40039fa194f7a21350fb252b741b7.jpg" alt="Anttonias anuncia nuevo disco" style="display: block; width: 100%; height: 100%; object-fit: cover"></a>
+<a href="#" aria-label="Reel de Instagram: Ana Tijoux en Coyhaique" style="flex: 0 0 {{ cardW }}px; height: {{ igH }}px; display: block; overflow: hidden; background: #eeeeee"><img src="./assets/750e218b7df3e0860095e57211c2d023.jpg" alt="Reel en vivo en el sur de Chile" style="display: block; width: 100%; height: 100%; object-fit: cover"></a>
+<a href="#" aria-label="Post de Instagram: Lollapalooza 2027" style="flex: 0 0 {{ cardW }}px; height: {{ igH }}px; display: block; overflow: hidden; background: #eeeeee"><img src="./assets/b9becbbc965d9af66fd53e468e1dc55f.jpg" alt="Artistas de Lotus en Lollapalooza 2027" style="display: block; width: 100%; height: 100%; object-fit: cover"></a>
+<a href="#" style="flex: 0 0 {{ cardW }}px; height: {{ igH }}px; box-sizing: border-box; padding: 32px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; gap: 18px; background: #1e1e1e; color: #ffffff; text-decoration: none">
+<svg width="44" height="44" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5" stroke="#D79212" stroke-width="1.6" fill="none"></rect><circle cx="12" cy="12" r="4" stroke="#D79212" stroke-width="1.6" fill="none"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="#D79212"></circle></svg>
+<span style="font-family: 'Bebas Neue Pro', Impact, sans-serif; font-weight: 700; font-size: 40px; line-height: 0.95; text-transform: uppercase">Ver más en Instagram</span>
+<span style="display: inline-flex; align-items: center; gap: 10px; font-size: 15px; color: #d9d9d9">Abrir perfil<svg width="18" height="10" viewBox="0 0 18 10" aria-hidden="true"><path d="M1 5h15M12 1l4 4-4 4" stroke="#D79212" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+</a>
+<div aria-hidden="true" style="flex: 0 0 8px; scroll-snap-align: none"></div>
+</div>
+<div style="display: flex; align-items: center; gap: 6px; padding: 0 20px">
+<sc-for list="{{ igDots }}" as="d" hint-placeholder-count="4"><span style="{{ d.style }}"></span></sc-for>
+<span style="margin-left: auto; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: #6b6b6b">Desliza<svg width="18" height="10" viewBox="0 0 18 10" aria-hidden="true"><path d="M1 5h15M12 1l4 4-4 4" stroke="#6b6b6b" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+</div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" style="flex: 1 1 auto; background: #0d0d0d; padding: 56px 20px; display: flex; flex-direction: column; gap: 14px">
+<p style="margin: 0; font-size: 22px; font-weight: 300; letter-spacing: 0.6em; text-transform: uppercase; color: #d9d9d9">Contacta</p>
+<h2 style="margin: 0; font-family: 'Bebas Neue Pro', Impact, sans-serif; font-weight: 700; font-size: 46px; line-height: 1; color: #d9d9d9; text-transform: uppercase">Con nosotros</h2>
+<div style="margin-top: 22px; display: flex; flex-direction: column; gap: 16px; font-size: 16px; color: #d9d9d9">
+<a href="mailto:contacto@lotusrecords.cl" style="display: flex; align-items: center; gap: 14px; color: #d9d9d9; text-decoration: none"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5" fill="#d9d9d9"></rect><path d="M3.5 6.5l8.5 6 8.5-6" stroke="#0d0d0d" stroke-width="1.6" fill="none"></path></svg>Email: contacto@lotusrecords.cl</a>
+<span style="display: flex; align-items: center; gap: 14px"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.5s-7-6.4-7-12a7 7 0 0 1 14 0c0 5.6-7 12-7 12z" fill="#d9d9d9"></path><circle cx="12" cy="9.5" r="2.6" fill="#0d0d0d"></circle></svg>Av. del Parque 5275, Huechuraba, Santiago.</span>
+</div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"cardW":{"editor":"range","default":300,"min":250,"max":340,"step":10,"unit":"px","section":"Carruseles"},"$preview":{"width":390,"height":2400}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { a: 0, s: 0, i: 0 };
+  }
+  renderVals() {
+    var cardW = this.props.cardW ?? 300;
+    var self = this;
+    var artists = [
+      { name: 'White MJ', tag: 'Desarrollo Integral', img: './assets/5eead8716dcbb0c953ff46d07230f2c1.jpg' },
+      { name: 'La Sonora de Tommy Rey', tag: 'Giras y Shows · Marcas', img: './assets/6dc91819f4ede144cdb8370c7b642111.jpg' },
+      { name: 'Amigo de Artistas', tag: 'Desarrollo Integral', img: './assets/cbc20f0ba0515a6c0cd2243dad6b542c.jpg' },
+      { name: 'Catalina y Las Bordonas de Oro', tag: 'Giras y Shows · Marcas', img: './assets/6e659f58186c8c917ed019b651ea02fb.jpg' },
+      { name: 'KUINA', tag: 'Giras y Shows · Marcas', img: './assets/e97c8e32a15dc21c40c5091798344dac.jpg' },
+      { name: 'FaceBrooklyn', tag: 'Desarrollo Integral', img: './assets/b485f81b7eb43e67ff779e2f1ab2217d.jpg' }
+    ];
+    function track(key, step, n) {
+      return function (e) {
+        var el = e.currentTarget;
+        var idx = Math.round(el.scrollLeft / step);
+        if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 4) idx = n - 1;
+        idx = Math.max(0, Math.min(n - 1, idx));
+        if (idx !== self.state[key]) { var o = {}; o[key] = idx; self.setState(o); }
+      };
+    }
+    function dots(n, cur, on, off) {
+      var out = [];
+      for (var k = 0; k < n; k++) {
+        var active = k === cur;
+        out.push({ style: 'display:block;height:6px;border-radius:3px;transition:width .25s ease,background .25s ease;width:' + (active ? 22 : 6) + 'px;background:' + (active ? on : off) });
+      }
+      return out;
+    }
+    return {
+      cardW: cardW,
+      artH: Math.round(cardW * 1.27),
+      igH: Math.round(cardW * 4 / 3),
+      artists: artists,
+      onArt: track('a', cardW + 14, artists.length),
+      onServ: track('s', cardW + 10, 4),
+      onIg: track('i', cardW + 12, 4),
+      artDots: dots(artists.length, this.state.a, '#D79212', '#666666'),
+      servDots: dots(4, this.state.s, '#D79212', '#8a8a8a'),
+      igDots: dots(4, this.state.i, '#D79212', '#8a8a8a')
+    };
+  }
+}
+</script>
+</body>
+</html>
